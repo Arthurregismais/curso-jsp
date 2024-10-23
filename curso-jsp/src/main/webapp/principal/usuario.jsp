@@ -46,7 +46,7 @@
 														<div class="card-block">
 															<h4 class="sub-title">Cad. Usuário</h4>
 															<form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post">
-																<div class="form-group form-default">
+																<div class="form-group form-default form-static-label">
 																	<input type="text" name="id" id="id"
 																		class="form-control"  readonly="readonly" value="${modelLogin.id }">
 																	<span class="form-bar"></span> <label
@@ -79,7 +79,7 @@
 																	<span class="form-bar"></span> <label
 																		class="float-label">Password:</label>
 																</div>
-																<button class="btn btn-primary waves-effect waves-light">Novo
+																<button class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo
 																	</button>
 																<button class="btn btn-success waves-effect waves-light">Salvar
 																	</button>
@@ -108,5 +108,16 @@
 	</div>
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 </body>
-
+ <script type="text/javascript">
+ 
+ function limparForm() {
+	var elementos = document.getElementById("formUser").elements; // Retorna os elementos HTML dentro do Form
+	
+	for (p = 0 ; p < elementos.length; p ++ ) {
+		elementos[p].value = "";
+	}
+}
+ 
+ 
+ </script>
 </html>
