@@ -95,7 +95,7 @@
 																</button>
 																<button type="button"
 																	class="btn btn-info waves-effect waves-light"
-																	onclick="criarDelete();">Excluir</button>
+																	onclick="criarDeleteComAjax();">Excluir</button>
 
 															</form>
 
@@ -103,7 +103,7 @@
 													</div>
 												</div>
 											</div>
-											<span>${msg}</span>
+											<span id="msg">${msg}</span>
 
 										</div>
 										<!-- Page-body end -->
@@ -135,6 +135,30 @@
 				document.getElementById("formUser").submit();
 			}
 
+		}
+
+		function criarDeleteComAjax() {
+
+			if (confirm('Desja realmente excluir os dados?')) {
+				var urlAction = document.getElementById('formUser').action;
+				var idUser = document.getElementById('id').value;
+
+				$.ajax({
+					method : "get",
+					url : urlAction,
+					data : "id=" + idUser + '&acao=deletarajax',
+					success : function(response) {
+						limparForm();
+						document.getElementById('msg').textContent = response;
+
+					}
+
+				}).fail(
+						function(xhr, status, errorThrown) {
+							alert('Erro ao deletar o usuário por id: '
+									+ xhr.responseText);
+						})
+			}
 		}
 	</script>
 </body>
