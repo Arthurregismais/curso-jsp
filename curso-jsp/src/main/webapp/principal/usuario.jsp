@@ -209,7 +209,7 @@
 						function(xhr, status, errorThrown) {
 							alert('Erro ao deletar o usuário por id: '
 									+ xhr.responseText);
-						})
+						});
 			}
 		}
 		
@@ -217,7 +217,24 @@
 			var nomeBusca = document.getElementById('nomeBusca').value;
 			
 			if (nomeBusca != null && nomeBusca !='' && nomeBusca.trim() != '') { /* Validando que tem que ter valor para buscar no banco de dados*/
-			alert(nomeBusca);
+				
+				var urlAction = document.getElementById('formUser').action;
+				
+				$.ajax({
+					method : "get",
+					url : urlAction,
+					data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
+					success : function(response) {
+						
+						
+
+					}
+
+				}).fail(
+						function(xhr, status, errorThrown) {
+							alert('Erro ao buscar o usuário por nome: '
+									+ xhr.responseText);
+						});
 	}
 }
 	</script>
