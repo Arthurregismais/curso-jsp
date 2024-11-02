@@ -122,29 +122,54 @@
 		</div>
 	</div>
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
-	
+
 	<!-- Modal -->
-<div class="modal fade" id="exampleModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de usuário</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-	
+	<div class="modal fade" id="exampleModalUsuario" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+						usuário</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" id="nomeBusca"
+							placeholder="Nome" aria-label="nome"
+							aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-success" type="button"
+								onclick="buscarUsuario()">Buscar</button>
+						</div>
+					</div>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Ver</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		function limparForm() {
 			var elementos = document.getElementById("formUser").elements; // Retorna os elementos HTML dentro do Form
@@ -187,6 +212,14 @@
 						})
 			}
 		}
+		
+		function buscarUsuario() {
+			var nomeBusca = document.getElementById('nomeBusca').value;
+			
+			if (nomeBusca != null && nomeBusca !='' && nomeBusca.trim() != '') { /* Validando que tem que ter valor para buscar no banco de dados*/
+			alert(nomeBusca);
+	}
+}
 	</script>
 </body>
 </html>
