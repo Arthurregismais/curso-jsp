@@ -226,7 +226,7 @@
 					data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
 					success : function(response) {
 						
-						
+						alert(response);
 
 					}
 
