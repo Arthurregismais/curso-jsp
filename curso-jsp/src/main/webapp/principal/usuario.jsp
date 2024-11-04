@@ -144,23 +144,25 @@
 							aria-describedby="basic-addon2">
 						<div class="input-group-append">
 							<button class="btn btn-success" type="button"
-								onclick="buscarUsuario()">Buscar</button>
+								onclick="buscarUsuario();">Buscar</button>
 						</div>
 					</div>
 
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Ver</th>
-							</tr>
-						</thead>
-						<tbody>
+					<div style="height: 300px; overflow: scroll;" >
+						<table class="table" id="tabelaresultados">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Ver</th>
+								</tr>
+							</thead>
+							<tbody>
 
-						</tbody>
-					</table>
-
+							</tbody>
+						</table>						
+					</div>
+					<span id="totalresultados"></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -212,31 +214,47 @@
 						});
 			}
 		}
-		
+
 		function buscarUsuario() {
 			var nomeBusca = document.getElementById('nomeBusca').value;
-			
-			if (nomeBusca != null && nomeBusca !='' && nomeBusca.trim() != '') { /* Validando que tem que ter valor para buscar no banco de dados*/
-				
+
+			if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != '') { /* Validando que tem que ter valor para buscar no banco de dados*/
+
 				var urlAction = document.getElementById('formUser').action;
-				
-				$.ajax({
-					method : "get",
-					url : urlAction,
-					data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
-					success : function(response) {
-						
-						alert(response);
 
-					}
+				$
+						.ajax(
+								{
+									method : "get",
+									url : urlAction,
+									data : "nomeBusca=" + nomeBusca
+											+ '&acao=buscarUserAjax',
+									success : function(response) {
 
-				}).fail(
-						function(xhr, status, errorThrown) {
-							alert('Erro ao buscar o usuário por nome: '
-									+ xhr.responseText);
-						});
-	}
-}
+										var json = JSON.parse(response);
+
+										$('#tabelaresultados > tbody > tr')
+												.remove();
+
+										for (var p = 0; p < json.length; p++) {
+											$('#tabelaresultados > tbody')
+													.append(
+															'<tr> <td> '
+																	+ json[p].id
+																	+ '</td> <td> '
+																	+ json[p].nome
+																	+ '</td> <td> <button class="btn btn-info" type="button">Ver</button> </td> </tr>');
+										}
+										document.getElementById('totalresultados').textContent = 'Resultados: ' + json.length;
+									}
+
+								}).fail(
+								function(xhr, status, errorThrown) {
+									alert('Erro ao buscar o usuário por nome: '
+											+ xhr.responseText);
+								});
+			}
+		}
 	</script>
 </body>
 </html>
