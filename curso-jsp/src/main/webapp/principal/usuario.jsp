@@ -243,7 +243,7 @@
 																	+ json[p].id
 																	+ '</td> <td> '
 																	+ json[p].nome
-																	+ '</td> <td> <button class="btn btn-info" type="button">Ver</button> </td> </tr>');
+																	+ '</td> <td> <button class="btn btn-info" type="button" onclick="verEditar('+ json[p].id+') ">Ver</button> </td> </tr>');
 										}
 										document.getElementById('totalresultados').textContent = 'Resultados: ' + json.length;
 									}
@@ -254,6 +254,13 @@
 											+ xhr.responseText);
 								});
 			}
+		}
+		
+		function verEditar(id) {
+
+			var urlAction = document.getElementById('formUser').action;
+			
+			window.location.href = urlAction + '?acao=buscarEditar&id=' + id ;
 		}
 	</script>
 </body>

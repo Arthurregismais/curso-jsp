@@ -71,6 +71,27 @@ public class DAOUsuarioRepository {
 		return modelLogin;
 	}
 	 
+public ModelLogin consultaUsuarioID(String id) throws Exception {
+		
+		ModelLogin modelLogin = new ModelLogin();
+		String sql = "SELECT * FROM model_login WHERE id = ? ";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setLong(1, Long.parseLong(id));
+		
+		
+		ResultSet resultado = statement.executeQuery();
+		
+		while (resultado.next()) /* Se tem resultado */ {
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setLogin(resultado.getString("login"));
+			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setNome(resultado.getString("nome"));
+		}	
+		
+		return modelLogin;
+	}
+	 
 	
 	public boolean validarLogin(String login) throws Exception {
 		String sql = "select count(1) > 0 as existe from model_login where upper(login) = upper('"+ login +"');";
@@ -120,6 +141,8 @@ public class DAOUsuarioRepository {
 			
 			retorno.add(modelLogin);
 		}
+		
+		
 		
 		
 		return retorno;
