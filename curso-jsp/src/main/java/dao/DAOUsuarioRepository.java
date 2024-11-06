@@ -119,6 +119,35 @@ public ModelLogin consultaUsuarioID(String id) throws Exception {
 		
 	}
 	
+public List<ModelLogin> consultaUsuarioList() throws Exception {
+		
+		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
+		
+		String sql = "SELECT * FROM model_login ;";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		
+		
+		ResultSet resultado = statement.executeQuery();
+		
+		while (resultado.next()) { // Percorrer as linhas de resultado do SQL
+			
+			ModelLogin modelLogin = new ModelLogin();
+			
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setLogin(resultado.getString("login"));
+			modelLogin.setNome(resultado.getString("nome"));
+			//modelLogin.setSenha(resultado.getString("senha"));
+			
+			retorno.add(modelLogin);
+		}
+		
+		
+		
+		
+		return retorno;
+	}
+	
 	public List<ModelLogin> consultaUsuarioList(String nome) throws Exception {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
