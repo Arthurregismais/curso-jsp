@@ -74,7 +74,7 @@ public class DAOUsuarioRepository {
 public ModelLogin consultaUsuarioID(String id) throws Exception {
 		
 		ModelLogin modelLogin = new ModelLogin();
-		String sql = "SELECT * FROM model_login WHERE id = ? ";
+		String sql = "SELECT * FROM model_login WHERE id = ? AND useradmin IS false;";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setLong(1, Long.parseLong(id));
 		
@@ -94,7 +94,7 @@ public ModelLogin consultaUsuarioID(String id) throws Exception {
 	 
 	
 	public boolean validarLogin(String login) throws Exception {
-		String sql = "select count(1) > 0 as existe from model_login where upper(login) = upper('"+ login +"');";
+		String sql = "select count(1) > 0 as existe from model_login where upper(login) = upper('"+ login +"') ;";
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
@@ -106,7 +106,7 @@ public ModelLogin consultaUsuarioID(String id) throws Exception {
 	}
 	
 	public void deletarUser(String idUser) throws Exception {
-		String sql = "DELETE FROM model_login WHERE id = ?;";
+		String sql = "DELETE FROM model_login WHERE id = ? AND useradmin IS false;";
 		PreparedStatement prepareSql = connection.prepareStatement(sql);
 					
 		prepareSql.setLong(1, Long.parseLong(idUser));
@@ -123,7 +123,7 @@ public List<ModelLogin> consultaUsuarioList() throws Exception {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "SELECT * FROM model_login ;";
+		String sql = "SELECT * FROM model_login WHERE useradmin IS false;";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
 		
@@ -152,7 +152,7 @@ public List<ModelLogin> consultaUsuarioList() throws Exception {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "SELECT * FROM model_login WHERE UPPER(nome) LIKE UPPER(?) ;";
+		String sql = "SELECT * FROM model_login WHERE UPPER(nome) LIKE UPPER(?) AND useradmin IS false;";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, "%" + nome  + "%");
 		
