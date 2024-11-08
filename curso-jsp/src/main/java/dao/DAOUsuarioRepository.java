@@ -62,11 +62,14 @@ public class DAOUsuarioRepository {
 		ResultSet resultado = statement.executeQuery();
 		
 		while (resultado.next()) /* Se tem resultado */ {
+			
 			modelLogin.setId(resultado.getLong("id"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setNome(resultado.getString("nome"));
+			
+			
 		}	
 		
 		return modelLogin;
@@ -194,6 +197,7 @@ public ModelLogin consultaUsuarioLogado(String login) throws Exception {
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setUseradmin(resultado.getBoolean("useradmin"));
 		}	
 		
 		return modelLogin;
@@ -213,6 +217,7 @@ public ModelLogin consultaUsuario(String login) throws Exception {
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setNome(resultado.getString("nome"));
+			
 		}	
 		
 		return modelLogin;
