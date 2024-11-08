@@ -77,6 +77,19 @@
 																</div>
 
 																<div class="form-group form-default">
+																	<select class="form-control"
+																		aria-label="Default select example" name="perfil" >
+																		<option disabled="disabled">[Selecione o Perfil]</option>
+																		<option value="ADMIN">Admin</option>
+																		<option value="SECRETARIA">Secretaria</option>
+																		<option value="AUXILIAR">Auxiliar</option>
+																	</select>
+																	<span class="form-bar"></span> <label
+																		class="float-label">Perfil:</label>
+																</div>
+
+
+																<div class="form-group form-default">
 																	<input type="text" name="login" id="login"
 																		class="form-control" required="required"
 																		autocomplete="off" value="${modelLogin.login }">
@@ -89,7 +102,7 @@
 																		class="form-control" required="required"
 																		autocomplete="off" value="${modelLogin.senha }">
 																	<span class="form-bar"></span> <label
-																		class="float-label">Password:</label>
+																		class="float-label">Senha:</label>
 																</div>
 																<button type="button"
 																	class="btn btn-primary waves-effect waves-light"
@@ -112,31 +125,33 @@
 											</div>
 											<span id="msg">${msg}</span>
 
-											
+
 
 										</div>
-										
+
 										<div style="height: 300px; overflow: scroll;">
-												<table class="table" id="tabelaresultadosView">
-													<thead>
+											<table class="table" id="tabelaresultadosView">
+												<thead>
+													<tr>
+														<th scope="col">ID</th>
+														<th scope="col">Nome</th>
+														<th scope="col">Ver</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${modelLogins}" var="ml">
 														<tr>
-															<th scope="col">ID</th>
-															<th scope="col">Nome</th>
-															<th scope="col">Ver</th>
+															<td><c:out value="${ml.id}"></c:out></td>
+															<td><c:out value="${ml.nome}"></c:out></td>
+															<td><c:out value="${ml.email}"></c:out></td>
+															<td><a
+																href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}"
+																class="btn btn-succcess">Ver</a></td>
 														</tr>
-													</thead>
-													<tbody>
-														<c:forEach items="${modelLogins}" var="ml">
-															<tr>
-																<td><c:out value="${ml.id}"></c:out></td>
-																<td><c:out value="${ml.nome}"></c:out></td>
-																<td><c:out value="${ml.email}"></c:out></td>
-																<td><a href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}" class="btn btn-succcess">Ver</a></td>
-															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
-											</div>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
 										<!-- Page-body end -->
 									</div>
 									<div id="styleSelector"></div>
