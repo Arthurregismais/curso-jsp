@@ -70,7 +70,7 @@ public class DAOUsuarioRepository {
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setNome(resultado.getString("nome"));
-			
+			modelLogin.setPerfil(resultado.getString("perfil"));
 			
 		}	
 		
@@ -94,6 +94,7 @@ public ModelLogin consultaUsuarioID(String id, Long userLogado) throws Exception
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 		}	
 		
 		return modelLogin;
@@ -145,6 +146,7 @@ public List<ModelLogin> consultaUsuarioList(Long userLogado) throws Exception {
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setNome(resultado.getString("nome"));
 			//modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 			
 			retorno.add(modelLogin);
 		}
@@ -175,6 +177,7 @@ public List<ModelLogin> consultaUsuarioList(Long userLogado) throws Exception {
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setNome(resultado.getString("nome"));
 			//modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 			
 			retorno.add(modelLogin);
 		}
@@ -220,7 +223,7 @@ public ModelLogin consultaUsuario(String login) throws Exception {
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setNome(resultado.getString("nome"));
-			
+			modelLogin.setPerfil(resultado.getString("perfil"));
 		}	
 		
 		return modelLogin;
